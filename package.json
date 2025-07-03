@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stackframe-app/stackframe-icons"
+    "url": "https://github.com/stackframe-app/stackframe-react-icons.git"
   },
   "files": [
     "dist",
@@ -18,7 +18,8 @@
     "icons",
     "files",
     "folders",
-    "editor"
+    "editor",
+    "react"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
