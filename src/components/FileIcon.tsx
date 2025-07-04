@@ -14,7 +14,7 @@ export const FileIcon: FC<Props> = ({ name, isFolder = false, className = "" }) 
     const folder = folders.supported.find(f =>
       (f.extensions ?? []).some(ext => ext === name.toLowerCase())
     );
-    iconName = folder ? folder.icon : "default-folder";
+    iconName = folder ? `folder_type_${folder.icon}` : "default-folder";
   } else {
     const parts = name.split(".");
     if (parts.length > 1) {
@@ -23,7 +23,7 @@ export const FileIcon: FC<Props> = ({ name, isFolder = false, className = "" }) 
         (e.extensions ?? []).some(ext => ext === extension)
       );
       if (match) {
-        iconName = match.icon;
+        iconName = `file_type_${match.icon}`;
       }
     }
   }

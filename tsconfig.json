@@ -8,6 +8,9 @@
     "target": "es6",
     "outDir": "dist",
     "lib": ["es6"],
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "declarationMap": true,
     "sourceMap": true,
     "rootDir": "src",
     "jsx": "react-jsx"

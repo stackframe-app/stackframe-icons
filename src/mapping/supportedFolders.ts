@@ -1,4 +1,4 @@
-import { FileFormat, IFolderCollection } from '../types';
+import { FileFormat, IFolderCollection } from '../models';
 
 export const folders: IFolderCollection = {
   default: {
