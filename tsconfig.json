@@ -10,10 +10,14 @@
     "lib": ["es6"],
     "declaration": true,
     "declarationDir": "./dist/types",
+    "esModuleInterop": true,
     "declarationMap": true,
     "sourceMap": true,
     "rootDir": "src",
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "src/functions/getFileIcon.tsx"]
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ]
 }

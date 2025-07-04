@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { extensions, folders } from "../mapping";
+import { iconMap } from "../mapping/iconMap";
 
 type Props = {
   name: string;
   isFolder?: boolean;
-  className?: string;
-};
+} & React.SVGProps<SVGSVGElement>;
 
-export const FileIcon: FC<Props> = ({ name, isFolder = false, className = "" }) => {
+export const FileIcon: FC<Props> = ({ name, isFolder = false, ...svgProps }) => {
   let iconName = "default-file";
 
   if (isFolder) {
@@ -17,18 +17,21 @@ export const FileIcon: FC<Props> = ({ name, isFolder = false, className = "" }) 
     iconName = folder ? `folder_type_${folder.icon}` : "default-folder";
   } else {
     const parts = name.split(".");
-    if (parts.length > 1) {
-      const extension = parts.pop()!.toLowerCase();
+    for (let i = 0; i < parts.length; i++) {
+      const extensionCandidate = parts.slice(i).join(".").toLowerCase();
+
       const match = extensions.supported.find(e =>
-        (e.extensions ?? []).some(ext => ext === extension)
+        (e.extensions ?? []).some(ext => ext === extensionCandidate)
       );
+
       if (match) {
         iconName = `file_type_${match.icon}`;
+        break;
       }
     }
   }
 
-  const SvgIcon = require(`../../icons/${iconName}.svg`).default;
+  const SvgIcon = iconMap[iconName] || iconMap["default-file"];
 
-  return <SvgIcon className={className} />;
+  return <SvgIcon {...svgProps} />;
 };

@@ -1,6 +1,6 @@
 {
   "name": "@stackframe-app/react-icons",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Icons mapping package, based on vscode-icons",
   "author": "StackFrame",
   "license": "MIT",
@@ -28,7 +28,8 @@
   },
   "scripts": {
     "clean": "rmdir /s /q dist",
-    "build": "tsc",
+    "generate:icons": "node scripts/generate-icon-map.js",
+    "build": "npm run generate:icons && tsc",
     "prepare": "npm run clean && npm run build",
     "publish:npm": "npm publish --access public",
     "publish": "npm run prepare && npm run publish:npm"
