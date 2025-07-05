@@ -1,20 +1,29 @@
-import { FC } from "react";
 import { extensions, folders } from "../mapping";
 import { iconMap } from "../mapping/iconMap";
 
-type Props = {
+type FolderProps = {
   name: string;
-  isFolder?: boolean;
+  isFolder: true;
+  opened?: boolean;
 } & React.SVGProps<SVGSVGElement>;
 
-export const FileIcon: FC<Props> = ({ name, isFolder = false, ...svgProps }) => {
+type FileProps = {
+  name: string;
+  isFolder?: false;
+} & React.SVGProps<SVGSVGElement>;
+
+type Props = FolderProps | FileProps;
+
+export const FileIcon = (props: Props) => {
+  const { name, ...svgProps } = props;
+
   let iconName = "default_file";
 
-  if (isFolder) {
+  if (props.isFolder) {
     const folder = folders.supported.find(f =>
       (f.extensions ?? []).some(ext => ext === name.toLowerCase())
     );
-    iconName = folder ? `folder_type_${folder.icon}` : "default_folder";
+    iconName = folder ? `folder_type_${folder.icon + (props.opened ? "_opened" : "")}` : "default_folder";
   } else {
     const parts = name.split(".");
     for (let i = 0; i < parts.length; i++) {
