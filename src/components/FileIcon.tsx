@@ -23,7 +23,7 @@ export const FileIcon = (props: Props) => {
     const folder = folders.supported.find(f =>
       (f.extensions ?? []).some(ext => ext === name.toLowerCase())
     );
-    iconName = folder ? `folder_type_${folder.icon + (props.opened ? "_opened" : "")}` : "default_folder";
+    iconName = folder ? `folder_type_${folder.icon + (props.opened ? "_opened" : "")}` : "default_folder" + (props.opened ? "_opened" : "");
   } else {
     const parts = name.split(".");
     for (let i = 0; i < parts.length; i++) {
@@ -41,5 +41,5 @@ export const FileIcon = (props: Props) => {
   }
 
   const SvgIcon = iconMap[iconName] || iconMap["default_file"];
-  return <SvgIcon {...svgProps} />;
+  return <SvgIcon viewBox="0 0 30 30" {...svgProps} />;
 };
